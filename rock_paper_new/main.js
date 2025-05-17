@@ -20,11 +20,10 @@ function getComputerchoice(){
 
 }
 
-function getHumanchoice(){
-    let chosen = prompt("Choose rock , paper , scissors");
-    chosen  = chosen.toLowerCase();
-    return chosen
-}
+const rock = document.querySelector('#rock');
+const paper = document.querySelector('#paper');
+const scissors = document.querySelector('#scissors')
+const result = document.querySelector('#final_res')
 
 let humanscore = 0;
 let computerscore = 0;
@@ -48,25 +47,47 @@ function playround(humanchoice , computerchoice){
     }
 }
 
+   
+// paper.addEventListener("click",playround('paper' , computerchoice))
+// scissors.addEventListener("click",playround('scissors' , computerchoice))
 
 
-let  i =  0;
-while(i < 5){
-    let humanchoice = getHumanchoice();
-    let computerchoice = getComputerchoice();
-    playround(humanchoice , computerchoice);
-    console.log(`Score: You ${humanscore} - Computer ${computerscore}`);
-    i++;
-}
+// rock.addEventListener("click", function() {
+//     playround('rock', getComputerchoice());
+// });
+// so the problem still is when we  clcik button how do we know what is score so 
 
-if(humanscore > computerscore ){
-    console.log('you win')
+
+function score(){
+    if(humanscore >= 5 || computerscore >= 5){
+    if(humanscore > computerscore ){
+    result.textContent = "You won";
+    
 }
 else if(humanscore == computerscore){
- 
-   console.log('no one won')
+   result.textContent = "no one won";
 }
 else{
-    console.log('you lost')
+    result.textContent = "You Lose";
 }
+}
+}
+
+
+
+
+
+rock.addEventListener("click", function() {
+    playround('rock', getComputerchoice());
+    score();
+});
+paper.addEventListener("click", function() {
+    playround('paper', getComputerchoice());
+    score();
+});
+scissors.addEventListener("click", function() {
+    playround('scissors', getComputerchoice());
+    score();
+});
+
 
